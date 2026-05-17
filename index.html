@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Leandro — Data Analyst Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0D0F14; --bg2: #13161D; --bg3: #1A1D26; --surface: #1F2330;
+    --border: rgba(255,255,255,0.07); --border2: rgba(255,255,255,0.13);
+    --text: #F0EDE8; --muted: #8A8FA0;
+    --accent: #4ECBA0; --accent2: #3AB58B;
+    --gold: #D4A94A; --coral: #E07060; --sky: #5AABE0;
+    --font-display: 'DM Serif Display', serif;
+    --font-body: 'Manrope', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 4rem;
+    background: rgba(13,15,20,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: var(--font-mono); font-size: 14px; color: var(--accent); letter-spacing: 0.1em; text-decoration: none; }
+  .nav-right { display: flex; align-items: center; gap: 2.5rem; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+
+  .lang-switcher { display: flex; align-items: center; gap: 2px; background: var(--bg3); border: 1px solid var(--border2); border-radius: 4px; padding: 3px; }
+  .lang-btn { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; padding: 5px 10px; border: none; border-radius: 3px; cursor: pointer; background: transparent; color: var(--muted); transition: all 0.18s; display: flex; align-items: center; gap: 5px; }
+  .lang-btn:hover { color: var(--text); }
+  .lang-btn.active { background: var(--accent); color: #0D0F14; }
+  .lang-flag { font-size: 13px; }
+
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 8rem 4rem 4rem; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(78,203,160,0.08) 0%, transparent 70%); pointer-events: none; }
+  .hero::after { content: ''; position: absolute; bottom: -100px; left: 10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(90,171,224,0.06) 0%, transparent 70%); pointer-events: none; }
+  .hero-eyebrow { font-family: var(--font-mono); font-size: 13px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 12px; }
+  .hero-eyebrow::before { content: ''; display: inline-block; width: 40px; height: 1px; background: var(--accent); }
+  .hero-title { font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1.05; font-weight: 400; margin-bottom: 1.5rem; max-width: 800px; }
+  .hero-title em { color: var(--accent); font-style: italic; }
+  .hero-sub { font-size: 18px; color: var(--muted); max-width: 560px; font-weight: 300; margin-bottom: 3rem; line-height: 1.8; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 3rem; }
+  .tag { font-family: var(--font-mono); font-size: 12px; padding: 6px 14px; border: 1px solid var(--border2); border-radius: 2px; color: var(--muted); letter-spacing: 0.05em; }
+  .tag.active { border-color: var(--accent); color: var(--accent); background: rgba(78,203,160,0.06); }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; font-size: 14px; font-weight: 500; font-family: var(--font-body); border-radius: 3px; text-decoration: none; cursor: pointer; transition: all 0.2s; border: none; }
+  .btn-primary { background: var(--accent); color: #0D0F14; }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border2); }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  section { padding: 6rem 4rem; }
+  .section-label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 12px; }
+  .section-label::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--accent); opacity: 0.5; }
+  .section-title { font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 400; margin-bottom: 1rem; }
+  .section-desc { color: var(--muted); max-width: 560px; font-weight: 300; margin-bottom: 3.5rem; font-size: 17px; }
+  hr.divider { border: none; border-top: 1px solid var(--border); margin: 0 4rem; }
+
+  #about { background: var(--bg2); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; max-width: 1100px; }
+  .about-text p { color: var(--muted); font-weight: 300; font-size: 17px; line-height: 1.9; margin-bottom: 1rem; }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .stat-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 4px; padding: 1.5rem; }
+  .stat-number { font-family: var(--font-display); font-size: 2.5rem; color: var(--accent); line-height: 1; margin-bottom: 0.5rem; }
+  .stat-label { font-size: 13px; color: var(--muted); font-weight: 400; }
+
+  #skills { background: var(--bg); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; max-width: 1100px; }
+  .skill-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 1.75rem; transition: border-color 0.2s, transform 0.2s; }
+  .skill-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+  .skill-icon { width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 1rem; }
+  .skill-icon.green { background: rgba(78,203,160,0.12); color: var(--accent); }
+  .skill-icon.sky { background: rgba(90,171,224,0.12); color: var(--sky); }
+  .skill-icon.gold { background: rgba(212,169,74,0.12); color: var(--gold); }
+  .skill-icon.coral { background: rgba(224,112,96,0.12); color: var(--coral); }
+  .skill-name { font-size: 15px; font-weight: 600; margin-bottom: 0.75rem; color: var(--text); }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .skill-tag { font-family: var(--font-mono); font-size: 11px; padding: 3px 10px; background: rgba(255,255,255,0.05); border-radius: 2px; color: var(--muted); }
+
+  #projects { background: var(--bg2); }
+  .projects-list { display: flex; flex-direction: column; gap: 1.5rem; max-width: 1100px; }
+  .project-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 2rem 2.5rem; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start; transition: border-color 0.2s; position: relative; overflow: hidden; }
+  .project-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent); opacity: 0; transition: opacity 0.2s; }
+  .project-card:hover { border-color: var(--border2); }
+  .project-card:hover::before { opacity: 1; }
+  .project-card.highlight { border-color: rgba(78,203,160,0.3); }
+  .project-card.highlight::before { opacity: 1; }
+  .project-number { font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+  .project-title { font-size: 20px; font-weight: 600; margin-bottom: 0.75rem; color: var(--text); }
+  .project-desc { color: var(--muted); font-weight: 300; font-size: 15px; line-height: 1.8; margin-bottom: 1.25rem; }
+  .project-tech { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tech-badge { font-family: var(--font-mono); font-size: 11px; padding: 4px 12px; border: 1px solid var(--border2); border-radius: 2px; color: var(--muted); }
+  .project-links { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; min-width: 140px; }
+  .project-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); text-decoration: none; font-weight: 500; transition: color 0.2s; white-space: nowrap; }
+  .project-link:hover { color: var(--accent); }
+  .project-link svg { width: 14px; height: 14px; flex-shrink: 0; }
+  .badge-area { font-family: var(--font-mono); font-size: 11px; padding: 4px 10px; border-radius: 2px; background: rgba(78,203,160,0.12); color: var(--accent); white-space: nowrap; }
+
+  #contact { background: var(--bg); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1100px; align-items: start; }
+  .contact-text p { color: var(--muted); font-size: 17px; font-weight: 300; line-height: 1.9; margin-bottom: 2rem; }
+  .contact-info { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-item { display: flex; align-items: center; gap: 12px; color: var(--muted); text-decoration: none; font-size: 15px; transition: color 0.2s; }
+  .contact-item:hover { color: var(--accent); }
+  .contact-item-icon { width: 36px; height: 36px; border: 1px solid var(--border); border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 15px; color: var(--muted); transition: border-color 0.2s, color 0.2s; }
+  .contact-item:hover .contact-item-icon { border-color: var(--accent); color: var(--accent); }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-form input, .contact-form textarea { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; padding: 12px 16px; color: var(--text); font-family: var(--font-body); font-size: 15px; transition: border-color 0.2s; resize: vertical; outline: none; }
+  .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--muted); }
+  .contact-form input:focus, .contact-form textarea:focus { border-color: var(--accent); }
+  .contact-form textarea { min-height: 120px; }
+
+  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  footer p { font-family: var(--font-mono); font-size: 12px; color: var(--muted); letter-spacing: 0.05em; }
+  .footer-accent { color: var(--accent); }
+
+  .lang-fade { transition: opacity 0.2s ease; }
+  .lang-fade.switching { opacity: 0; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-eyebrow { animation: fadeUp 0.7s ease both 0.1s; }
+  .hero-title    { animation: fadeUp 0.7s ease both 0.25s; }
+  .hero-sub      { animation: fadeUp 0.7s ease both 0.4s; }
+  .hero-tags     { animation: fadeUp 0.7s ease both 0.5s; }
+  .hero-cta      { animation: fadeUp 0.7s ease both 0.6s; }
+
+  @media (max-width: 860px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section, .hero { padding: 4rem 1.5rem; }
+    hr.divider { margin: 0 1.5rem; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .project-card { grid-template-columns: 1fr; }
+    .project-links { flex-direction: row; align-items: flex-start; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
+    .nav-right { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">LD / DATA</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#about" data-i18n="nav.about">Sobre</a></li>
+      <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+      <li><a href="#projects" data-i18n="nav.projects">Projetos</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contato</a></li>
+    </ul>
+    <div class="lang-switcher" role="group" aria-label="Language selector">
+      <button class="lang-btn active" data-lang="pt" aria-label="Português"><span class="lang-flag">🇧🇷</span> PT</button>
+      <button class="lang-btn" data-lang="en" aria-label="English"><span class="lang-flag">🇬🇧</span> EN</button>
+      <button class="lang-btn" data-lang="es" aria-label="Español"><span class="lang-flag">🇪🇸</span> ES</button>
+    </div>
+  </div>
+</nav>
+
+<section class="hero lang-fade" id="home">
+  <p class="hero-eyebrow" data-i18n="hero.eyebrow">Portfólio Profissional</p>
+  <h1 class="hero-title" data-i18n="hero.title">Transformando dados<br>em <em>decisões</em> estratégicas.</h1>
+  <p class="hero-sub" data-i18n="hero.sub">Analista de dados especializado em Business Intelligence, Data Engineering e Visualização — construindo soluções que geram impacto real.</p>
+  <div class="hero-tags">
+    <span class="tag active">Business Intelligence</span>
+    <span class="tag active">Data Analysis</span>
+    <span class="tag active">Data Visualization</span>
+    <span class="tag active">Data Engineering</span>
+  </div>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary" data-i18n="hero.cta1">Ver projetos</a>
+    <a href="#contact" class="btn btn-outline" data-i18n="hero.cta2">Entre em contato</a>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<section id="about" class="lang-fade">
+  <p class="section-label" data-i18n="about.label">Sobre mim</p>
+  <div class="about-grid">
+    <div class="about-text">
+      <h2 class="section-title" data-i18n="about.title">Dados como linguagem,<br>insights como resultado.</h2>
+      <p data-i18n="about.p1">Sou analista de BI com experiência sólida em todo o ciclo de dados — da coleta e transformação ao storytelling visual. Trabalho com ferramentas modernas para entregar <strong>análises que realmente mudam decisões</strong>.</p>
+      <p data-i18n="about.p2">Meu diferencial está na combinação entre <strong>visão técnica e comunicação clara</strong>: construo pipelines robustos e dashboards que qualquer stakeholder consegue ler e agir.</p>
+      <p data-i18n="about.p3">Atualmente em expansão internacional, com foco no mercado europeu — especialmente <strong>Espanha</strong>, onde aplico meu conhecimento de dados em contextos multilíngues e multiculturais.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card"><div class="stat-number">3+</div><div class="stat-label" data-i18n="about.stat1">Anos de experiência em dados</div></div>
+      <div class="stat-card"><div class="stat-number">10+</div><div class="stat-label" data-i18n="about.stat2">Dashboards entregues</div></div>
+      <div class="stat-card"><div class="stat-number">5+</div><div class="stat-label" data-i18n="about.stat3">Ferramentas de BI dominadas</div></div>
+      <div class="stat-card"><div class="stat-number">4</div><div class="stat-label" data-i18n="about.stat4">Áreas de especialização</div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<section id="skills" class="lang-fade">
+  <p class="section-label" data-i18n="skills.label">Competências</p>
+  <h2 class="section-title" data-i18n="skills.title">Stack técnico</h2>
+  <p class="section-desc" data-i18n="skills.desc">Ferramentas e tecnologias que uso para extrair valor dos dados.</p>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon green">📊</div>
+      <div class="skill-name">Business Intelligence</div>
+      <div class="skill-tags"><span class="skill-tag">Power BI</span><span class="skill-tag">Tableau</span><span class="skill-tag">Looker</span><span class="skill-tag">DAX</span><span class="skill-tag">KPI Design</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon sky">🛠️</div>
+      <div class="skill-name">Data Engineering</div>
+      <div class="skill-tags"><span class="skill-tag">SQL</span><span class="skill-tag">Python</span><span class="skill-tag">ETL/ELT</span><span class="skill-tag">dbt</span><span class="skill-tag">Airflow</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon gold">🔍</div>
+      <div class="skill-name">Data Analysis</div>
+      <div class="skill-tags"><span class="skill-tag">Pandas</span><span class="skill-tag">Excel</span><span class="skill-tag">Estatística</span><span class="skill-tag">A/B Testing</span><span class="skill-tag">Cohort Analysis</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon coral">📈</div>
+      <div class="skill-name">Data Visualization</div>
+      <div class="skill-tags"><span class="skill-tag">Matplotlib</span><span class="skill-tag">Plotly</span><span class="skill-tag">D3.js</span><span class="skill-tag">Storytelling</span><span class="skill-tag">Figma</span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<section id="projects" class="lang-fade">
+  <p class="section-label" data-i18n="projects.label">Portfólio</p>
+  <h2 class="section-title" data-i18n="projects.title">Projetos em destaque</h2>
+  <p class="section-desc" data-i18n="projects.desc">Soluções reais construídas para resolver problemas de negócio com dados.</p>
+  <div class="projects-list">
+
+    <div class="project-card highlight">
+      <div class="project-body">
+        <p class="project-number">01 — BI / <span data-i18n="proj.viz">Visualização</span></p>
+        <h3 class="project-title" data-i18n="proj1.title">Dashboard de Performance Comercial</h3>
+        <p class="project-desc" data-i18n="proj1.desc">Dashboard executivo em Power BI para acompanhamento de vendas, ticket médio, funil de conversão e metas regionais. Integração com SQL Server e atualização incremental diária. Reduziu o tempo de geração de relatórios de 3 horas para 5 minutos.</p>
+        <div class="project-tech"><span class="tech-badge">Power BI</span><span class="tech-badge">DAX</span><span class="tech-badge">SQL Server</span><span class="tech-badge">ETL</span></div>
+      </div>
+      <div class="project-links">
+        <span class="badge-area" data-i18n="proj.featured">Destaque</span>
+        <a href="#" class="project-link"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg><span data-i18n="proj.view">Ver projeto</span></a>
+        <a href="#" class="project-link"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-body">
+        <p class="project-number">02 — Data Engineering</p>
+        <h3 class="project-title" data-i18n="proj2.title">Pipeline de Dados com dbt + BigQuery</h3>
+        <p class="project-desc" data-i18n="proj2.desc">Construção de pipeline de dados modular utilizando dbt para transformação e BigQuery como data warehouse. Modelagem dimensional (star schema) para área de marketing. Documentação e testes automatizados incluídos.</p>
+        <div class="project-tech"><span class="tech-badge">dbt</span><span class="tech-badge">BigQuery</span><span class="tech-badge">Python</span><span class="tech-badge">SQL</span><span class="tech-badge">Data Modeling</span></div>
+      </div>
+      <div class="project-links">
+        <a href="#" class="project-link"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg><span data-i18n="proj.view">Ver projeto</span></a>
+        <a href="#" class="project-link"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-body">
+        <p class="project-number">03 — Data Analysis</p>
+        <h3 class="project-title" data-i18n="proj3.title">Análise de Churn com Cohort Analysis</h3>
+        <p class="project-desc" data-i18n="proj3.desc">Análise exploratória e preditiva de churn de clientes em e-commerce. Cohort analysis com retenção por período, segmentação de clientes por comportamento e visualizações interativas em Python (Plotly). Identificou padrões de saída no 3º mês de vida do cliente.</p>
+        <div class="project-tech"><span class="tech-badge">Python</span><span class="tech-badge">Pandas</span><span class="tech-badge">Plotly</span><span class="tech-badge">Cohort Analysis</span><span class="tech-badge">Jupyter</span></div>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/lfernandesinsight/Analise-de-Churn-com-Cohort" target="_blank" class="project-link"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg><span data-i18n="proj.view">Ver projeto</span></a>
+        <a href="https://github.com/lfernandesinsight/Analise-de-Churn-com-Cohort" target="_blank" class="project-link"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>GitHub</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<section id="contact" class="lang-fade">
+  <p class="section-label" data-i18n="contact.label">Contato</p>
+  <div class="contact-grid">
+    <div class="contact-text">
+      <h2 class="section-title" data-i18n="contact.title">Vamos trabalhar<br>juntos?</h2>
+      <p data-i18n="contact.desc">Estou disponível para novas oportunidades em BI, Data Analysis e Data Engineering — especialmente em empresas com atuação na Europa.</p>
+      <div class="contact-info">
+        <a href="mailto:lfernandes.insight@gmail.com" class="contact-item"><div class="contact-item-icon">✉</div>lfernandes.insight@gmail.com</a>
+        <a href="https://www.linkedin.com/in/leandro-fernandes-bi/" target="_blank" class="contact-item"><div class="contact-item-icon">in</div>linkedin.com/in/leandro-fernandes-bi</a>
+        <a href="https://github.com/seugithub" class="contact-item">
+          <div class="contact-item-icon"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></div>
+          github.com/seugithub
+        </a>
+      </div>
+    </div>
+    <form class="contact-form" onsubmit="return false;">
+      <input type="text" data-i18n-placeholder="contact.name" placeholder="Seu nome" />
+      <input type="email" data-i18n-placeholder="contact.email" placeholder="Seu e-mail" />
+      <textarea data-i18n-placeholder="contact.message" placeholder="Sua mensagem..."></textarea>
+      <button type="submit" class="btn btn-primary" style="align-self: flex-start;" data-i18n="contact.send">Enviar mensagem</button>
+    </form>
+  </div>
+</section>
+
+<footer class="lang-fade">
+  <p>© 2025 <span class="footer-accent">Leandro</span> — Data Analyst Portfolio</p>
+  <p data-i18n="footer.made">Feito com foco em dados e design.</p>
+</footer>
+
+<script>
+const translations = {
+  pt: {
+    "nav.about":"Sobre","nav.skills":"Skills","nav.projects":"Projetos","nav.contact":"Contato",
+    "hero.eyebrow":"Portfólio Profissional",
+    "hero.title":"Transformando dados<br>em <em>decisões</em> estratégicas.",
+    "hero.sub":"Analista de dados especializado em Business Intelligence, Data Engineering e Visualização — construindo soluções que geram impacto real.",
+    "hero.cta1":"Ver projetos","hero.cta2":"Entre em contato",
+    "about.label":"Sobre mim",
+    "about.title":"Dados como linguagem,<br>insights como resultado.",
+    "about.p1":"Sou analista de BI com experiência sólida em todo o ciclo de dados — da coleta e transformação ao storytelling visual. Trabalho com ferramentas modernas para entregar <strong>análises que realmente mudam decisões</strong>.",
+    "about.p2":"Meu diferencial está na combinação entre <strong>visão técnica e comunicação clara</strong>: construo pipelines robustos e dashboards que qualquer stakeholder consegue ler e agir.",
+    "about.p3":"Atualmente em expansão internacional, com foco no mercado europeu — especialmente <strong>Espanha</strong>, onde aplico meu conhecimento de dados em contextos multilíngues e multiculturais.",
+    "about.stat1":"Anos de experiência em dados","about.stat2":"Dashboards entregues","about.stat3":"Ferramentas de BI dominadas","about.stat4":"Áreas de especialização",
+    "skills.label":"Competências","skills.title":"Stack técnico","skills.desc":"Ferramentas e tecnologias que uso para extrair valor dos dados.",
+    "projects.label":"Portfólio","projects.title":"Projetos em destaque","projects.desc":"Soluções reais construídas para resolver problemas de negócio com dados.",
+    "proj.viz":"Visualização","proj.featured":"Destaque","proj.view":"Ver projeto",
+    "proj1.title":"Dashboard de Performance Comercial",
+    "proj1.desc":"Dashboard executivo em Power BI para acompanhamento de vendas, ticket médio, funil de conversão e metas regionais. Integração com SQL Server e atualização incremental diária. Reduziu o tempo de geração de relatórios de 3 horas para 5 minutos.",
+    "proj2.title":"Pipeline de Dados com dbt + BigQuery",
+    "proj2.desc":"Construção de pipeline de dados modular utilizando dbt para transformação e BigQuery como data warehouse. Modelagem dimensional (star schema) para área de marketing. Documentação e testes automatizados incluídos.",
+    "proj3.title":"Análise de Churn com Cohort Analysis",
+    "proj3.desc":"Análise exploratória e preditiva de churn de clientes em e-commerce. Cohort analysis com retenção por período, segmentação de clientes por comportamento e visualizações interativas em Python (Plotly). Identificou padrões de saída no 3º mês de vida do cliente.",
+    "contact.label":"Contato","contact.title":"Vamos trabalhar<br>juntos?",
+    "contact.desc":"Estou disponível para novas oportunidades em BI, Data Analysis e Data Engineering — especialmente em empresas com atuação na Europa.",
+    "contact.name":"Seu nome","contact.email":"Seu e-mail","contact.message":"Sua mensagem...","contact.send":"Enviar mensagem",
+    "footer.made":"Feito com foco em dados e design."
+  },
+  en: {
+    "nav.about":"About","nav.skills":"Skills","nav.projects":"Projects","nav.contact":"Contact",
+    "hero.eyebrow":"Professional Portfolio",
+    "hero.title":"Turning data into<br><em>strategic</em> decisions.",
+    "hero.sub":"Data analyst specialized in Business Intelligence, Data Engineering and Visualization — building solutions that drive real impact.",
+    "hero.cta1":"View projects","hero.cta2":"Get in touch",
+    "about.label":"About me",
+    "about.title":"Data as language,<br>insights as outcome.",
+    "about.p1":"I'm a BI analyst with solid experience across the full data cycle — from collection and transformation to visual storytelling. I use modern tools to deliver <strong>analyses that actually change decisions</strong>.",
+    "about.p2":"My edge lies in combining <strong>technical depth with clear communication</strong>: I build robust pipelines and dashboards that any stakeholder can read and act on.",
+    "about.p3":"Currently expanding internationally, with a focus on the European market — especially <strong>Spain</strong>, where I apply my data expertise in multilingual and multicultural environments.",
+    "about.stat1":"Years of data experience","about.stat2":"Dashboards delivered","about.stat3":"BI tools mastered","about.stat4":"Areas of expertise",
+    "skills.label":"Skills","skills.title":"Technical stack","skills.desc":"Tools and technologies I use to extract value from data.",
+    "projects.label":"Portfolio","projects.title":"Featured projects","projects.desc":"Real solutions built to solve business problems with data.",
+    "proj.viz":"Visualization","proj.featured":"Featured","proj.view":"View project",
+    "proj1.title":"Commercial Performance Dashboard",
+    "proj1.desc":"Executive Power BI dashboard for tracking sales, average ticket, conversion funnel and regional targets. Integrated with SQL Server and daily incremental refresh. Reduced report generation time from 3 hours to 5 minutes.",
+    "proj2.title":"Data Pipeline with dbt + BigQuery",
+    "proj2.desc":"Modular data pipeline built with dbt for transformation and BigQuery as data warehouse. Dimensional modeling (star schema) for the marketing area. Automated documentation and tests included.",
+    "proj3.title":"Churn Analysis with Cohort Analysis",
+    "proj3.desc":"Exploratory and predictive churn analysis for an e-commerce customer base. Cohort analysis with period retention, behavioral customer segmentation, and interactive visualizations in Python (Plotly). Identified exit patterns in the 3rd month of customer lifecycle.",
+    "contact.label":"Contact","contact.title":"Let's work<br>together?",
+    "contact.desc":"I'm open to new opportunities in BI, Data Analysis and Data Engineering — especially at companies operating in Europe.",
+    "contact.name":"Your name","contact.email":"Your e-mail","contact.message":"Your message...","contact.send":"Send message",
+    "footer.made":"Built with a focus on data and design."
+  },
+  es: {
+    "nav.about":"Sobre mí","nav.skills":"Skills","nav.projects":"Proyectos","nav.contact":"Contacto",
+    "hero.eyebrow":"Portafolio Profesional",
+    "hero.title":"Convirtiendo datos en<br>decisiones <em>estratégicas</em>.",
+    "hero.sub":"Analista de datos especializado en Business Intelligence, Data Engineering y Visualización — construyendo soluciones que generan impacto real.",
+    "hero.cta1":"Ver proyectos","hero.cta2":"Contactar",
+    "about.label":"Sobre mí",
+    "about.title":"Datos como lenguaje,<br>insights como resultado.",
+    "about.p1":"Soy analista de BI con sólida experiencia en todo el ciclo de datos — desde la recopilación y transformación hasta el storytelling visual. Uso herramientas modernas para ofrecer <strong>análisis que realmente cambian decisiones</strong>.",
+    "about.p2":"Mi diferencial está en la combinación de <strong>visión técnica y comunicación clara</strong>: construyo pipelines robustos y dashboards que cualquier stakeholder puede leer y sobre los que puede actuar.",
+    "about.p3":"Actualmente en expansión internacional, con foco en el mercado europeo — especialmente <strong>España</strong>, donde aplico mi conocimiento en contextos multilingües y multiculturales.",
+    "about.stat1":"Años de experiencia en datos","about.stat2":"Dashboards entregados","about.stat3":"Herramientas de BI dominadas","about.stat4":"Áreas de especialización",
+    "skills.label":"Competencias","skills.title":"Stack técnico","skills.desc":"Herramientas y tecnologías que uso para extraer valor de los datos.",
+    "projects.label":"Portafolio","projects.title":"Proyectos destacados","projects.desc":"Soluciones reales construidas para resolver problemas de negocio con datos.",
+    "proj.viz":"Visualización","proj.featured":"Destacado","proj.view":"Ver proyecto",
+    "proj1.title":"Dashboard de Rendimiento Comercial",
+    "proj1.desc":"Dashboard ejecutivo en Power BI para el seguimiento de ventas, ticket promedio, embudo de conversión y objetivos regionales. Integración con SQL Server y actualización incremental diaria. Redujo el tiempo de generación de informes de 3 horas a 5 minutos.",
+    "proj2.title":"Pipeline de Datos con dbt + BigQuery",
+    "proj2.desc":"Construcción de pipeline de datos modular usando dbt para transformación y BigQuery como data warehouse. Modelado dimensional (star schema) para el área de marketing. Documentación y pruebas automatizadas incluidas.",
+    "proj3.title":"Análisis de Churn con Cohort Analysis",
+    "proj3.desc":"Análisis exploratorio y predictivo de churn de clientes en e-commerce. Cohort analysis con retención por período, segmentación de clientes por comportamiento y visualizaciones interactivas en Python (Plotly). Identificó patrones de salida en el 3er mes del ciclo de vida del cliente.",
+    "contact.label":"Contacto","contact.title":"¿Trabajamos<br>juntos?",
+    "contact.desc":"Estoy disponible para nuevas oportunidades en BI, Data Analysis y Data Engineering — especialmente en empresas con presencia en Europa.",
+    "contact.name":"Tu nombre","contact.email":"Tu correo","contact.message":"Tu mensaje...","contact.send":"Enviar mensaje",
+    "footer.made":"Hecho con foco en datos y diseño."
+  }
+};
+
+let currentLang = 'pt';
+
+function setLang(lang) {
+  if (lang === currentLang) return;
+  currentLang = lang;
+  const t = translations[lang];
+  document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang === 'es' ? 'es-ES' : 'en';
+
+  document.querySelectorAll('.lang-fade').forEach(el => el.classList.add('switching'));
+
+  setTimeout(() => {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.dataset.i18nPlaceholder;
+      if (t[key] !== undefined) el.placeholder = t[key];
+    });
+    document.querySelectorAll('.lang-fade').forEach(el => el.classList.remove('switching'));
+  }, 200);
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.dataset.lang));
+});
+</script>
+</body>
+</html>
