@@ -255,19 +255,7 @@ ES
 </div>
 <div class="project-card">
 <div class="project-body">
-<p class="project-number">03 — Data Engineering</p>
-<h3 class="project-title" data-i18n="proj2.title">Pipeline de Dados com dbt + BigQuery</h3>
-<p class="project-desc" data-i18n="proj2.desc">Construção de pipeline de dados modular utilizando dbt para transformação e BigQuery como data warehouse. Modelagem dimensional (star schema) para área de marketing. Documentação e testes automatizados incluídos.</p>
-<div class="project-tech"><span class="tech-badge">dbt</span><span class="tech-badge">BigQuery</span><span class="tech-badge">Python</span><span class="tech-badge">SQL</span><span class="tech-badge">Data Modeling</span></div>
-</div>
-<div class="project-links">
-<a href="#" class="project-link"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg><span data-i18n="proj.view">Ver projeto</span></a>
-<a href="#" class="project-link"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>GitHub</a>
-</div>
-</div>
-<div class="project-card">
-<div class="project-body">
-<p class="project-number">04 — Data Analysis</p>
+<p class="project-number">03 — Data Analysis</p>
 <h3 class="project-title" data-i18n="proj3.title">Análise de Churn com Cohort Analysis</h3>
 <p class="project-desc" data-i18n="proj3.desc">Análise exploratória e preditiva de churn de clientes em e-commerce. Cohort analysis com retenção por período, segmentação de clientes por comportamento e visualizações interativas em Python (Plotly). Identificou padrões de saída no 3º mês de vida do cliente.</p>
 <div class="project-tech"><span class="tech-badge">Python</span><span class="tech-badge">Pandas</span><span class="tech-badge">Plotly</span><span class="tech-badge">Cohort Analysis</span><span class="tech-badge">Jupyter</span></div>
@@ -280,7 +268,7 @@ ES
 </div>
 <div class="project-card">
 <div class="project-body">
-<p class="project-number">05 — Data Science / <span data-i18n="proj.viz">Visualização</span></p>
+<p class="project-number">04 — Data Science / <span data-i18n="proj.viz">Visualização</span></p>
 <h3 class="project-title" data-i18n="proj5.title">Modelo de Risco de Sinistralidade — Seguradora B2B</h3>
 <p class="project-desc" data-i18n="proj5.desc">Modelo preditivo de propensão a sinistro para uma seguradora fictícia B2B, com pipeline completo: geração de dados sintéticos, banco PostgreSQL via Docker, EDA e feature engineering em notebooks, modelo de Regressão Logística (AUC-ROC 0.917) e dashboard de acompanhamento de carteira no Grafana.</p>
 <div class="project-tech"><span class="tech-badge">Python</span><span class="tech-badge">PostgreSQL</span><span class="tech-badge">Docker</span><span class="tech-badge">scikit-learn</span><span class="tech-badge">Grafana</span></div>
@@ -344,8 +332,6 @@ pt: {
 "proj4.desc":"Pipeline de dados completo e automatizado analisando tempos de espera de solicitações de cidadania espanhola (Lei de Memória Democrática), com base em dados públicos da comunidade. ETL em Python lê a planilha direto do Google Sheets, trata inconsistências reais (datas mistas, duplicatas, texto livre) e carrega num Postgres gerenciado (Neon) via automação diária no GitHub Actions. Dashboard público no Grafana Cloud com KPIs, detecção de outliers (IQR) e análise de tendência.",
 "proj1.title":"Dashboard de Performance Comercial",
 "proj1.desc":"Dashboard executivo em Power BI para acompanhamento de vendas, ticket médio, funil de conversão e metas regionais. Integração com SQL Server e atualização incremental diária. Reduziu o tempo de geração de relatórios de 3 horas para 5 minutos.",
-"proj2.title":"Pipeline de Dados com dbt + BigQuery",
-"proj2.desc":"Construção de pipeline de dados modular utilizando dbt para transformação e BigQuery como data warehouse. Modelagem dimensional (star schema) para área de marketing. Documentação e testes automatizados incluídos.",
 "proj3.title":"Análise de Churn com Cohort Analysis",
 "proj3.desc":"Análise exploratória e preditiva de churn de clientes em e-commerce. Cohort analysis com retenção por período, segmentação de clientes por comportamento e visualizações interativas em Python (Plotly). Identificou padrões de saída no 3º mês de vida do cliente.",
 "proj5.title":"Modelo de Risco de Sinistralidade — Seguradora B2B",
@@ -374,8 +360,6 @@ en: {
 "proj4.desc":"A complete, fully automated data pipeline analyzing wait times for Spanish citizenship applications under the Democratic Memory Law, built on public data from the applicant community. A Python ETL reads the spreadsheet directly from Google Sheets, handles real-world inconsistencies (mixed date formats, duplicates, free text), and loads it into a managed Postgres database (Neon) via daily automation on GitHub Actions. Public Grafana Cloud dashboard with KPIs, outlier detection (IQR), and trend analysis.",
 "proj1.title":"Commercial Performance Dashboard",
 "proj1.desc":"Full data pipeline and Power BI dashboard for e-commerce commercial performance, built on the public Olist dataset. Pure SQL ETL (staging → star schema), custom dark theme, and 4 analysis pages (Overview, Seller, Product, Logistics). Key finding: review score drops from 4.1 to 1.7 as delivery delay increases.",
-"proj2.title":"Data Pipeline with dbt + BigQuery",
-"proj2.desc":"Modular data pipeline built with dbt for transformation and BigQuery as data warehouse. Dimensional modeling (star schema) for the marketing area. Automated documentation and tests included.",
 "proj3.title":"Churn Analysis with Cohort Analysis",
 "proj3.desc":"Exploratory and predictive churn analysis for an e-commerce customer base. Cohort analysis with period retention, behavioral customer segmentation, and interactive visualizations in Python (Plotly). Identified exit patterns in the 3rd month of customer lifecycle.",
 "proj5.title":"Insurance Claims Risk Model — B2B Insurer",
@@ -404,8 +388,6 @@ es: {
 "proj4.desc":"Un pipeline de datos completo y totalmente automatizado que analiza los tiempos de espera de las solicitudes de ciudadanía española (Ley de Memoria Democrática), basado en datos públicos de la comunidad de solicitantes. Un ETL en Python lee la hoja de cálculo directamente desde Google Sheets, corrige inconsistencias reales (formatos de fecha mixtos, duplicados, texto libre) y la carga en una base de datos Postgres gestionada (Neon) mediante automatización diaria en GitHub Actions. Dashboard público en Grafana Cloud con KPIs, detección de valores atípicos (IQR) y análisis de tendencia.",
 "proj1.title":"Dashboard de Rendimiento Comercial",
 "proj1.desc":"Pipeline de datos completo y dashboard en Power BI para rendimiento comercial de e-commerce, construido sobre el dataset público Olist. ETL en SQL puro (staging → star schema), tema oscuro personalizado y 4 páginas de análisis (Resumen, Vendedor, Producto, Logística). Hallazgo principal: la nota de evaluación cae de 4,1 a 1,7 a medida que aumenta el retraso de entrega.",
-"proj2.title":"Pipeline de Datos con dbt + BigQuery",
-"proj2.desc":"Construcción de pipeline de datos modular usando dbt para transformación y BigQuery como data warehouse. Modelado dimensional (star schema) para el área de marketing. Documentación y pruebas automatizadas incluidas.",
 "proj3.title":"Análisis de Churn con Cohort Analysis",
 "proj3.desc":"Análisis exploratorio y predictivo de churn de clientes en e-commerce. Cohort analysis con retención por período, segmentación de clientes por comportamiento y visualizaciones interactivas en Python (Plotly). Identificó patrones de salida en el 3er mes del ciclo de vida del cliente.",
 "proj5.title":"Modelo de Riesgo de Siniestralidad — Aseguradora B2B",
